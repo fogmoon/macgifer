@@ -1,21 +1,30 @@
-// https://github.com/nko4/website/blob/master/module/README.md#nodejs-knockout-deploy-check-ins
-require('nko')('DQ-GoMjZi2jjKUth');
-
 var express = require('express');
 var http = require('http');
 var redis = require('redis');
 var fs = require('fs');
 var ws = require('ws');
+var url = require('url'); 
 
 var GIFEncoder = require('./lib/GIFEncoder.js');
 
 // Common settings
-var common = require('./common.js')
+var common = require('./common.js');
+
+var redisCreateClient = function() {
+    if (process.env.REDISTOGO_URL) {
+        var rtg   = url.parse(process.env.REDISTOGO_URL);
+        var client = redis.createClient(rtg.port, rtg.hostname);
+        client.auth(rtg.auth.split(":")[1]);
+        return client;
+    } else {
+        return redis.createClient();
+    }
+};
 
 // Create app and websockets
 var app = express();
 var server = http.createServer(app);
-var client = redis.createClient();
+var client = redisCreateClient();
 var sockets = new ws.Server({
     server: server
 });
@@ -100,7 +109,7 @@ app.get('/faq.htm', function(req, res) {
  * Watch a stream.
  */
 app.get('/:id.gif', function(req, res) {
-  var client = redis.createClient();
+  var client = redisCreateClient();
   var encoder = new GIFEncoder(common.WIDTH, common.HEIGHT);
 
   res.setHeader('Content-Type', 'image/gif');
