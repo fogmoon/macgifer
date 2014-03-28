@@ -1,6 +1,7 @@
 var express = require('express');
 var http = require('http');
 var redis = require('redis');
+var redisUrl = require('redis-url');
 var fs = require('fs');
 var ws = require('ws');
 var url = require('url'); 
@@ -12,10 +13,7 @@ var common = require('./common.js');
 
 var redisCreateClient = function() {
     if (process.env.REDISTOGO_URL) {
-        var rtg   = url.parse(process.env.REDISTOGO_URL);
-        var client = redis.createClient(rtg.port, rtg.hostname);
-        client.auth(rtg.auth.split(":")[1]);
-        return client;
+        return redisUrl.connect(process.env.REDISTOGO_URL);
     } else {
         return redis.createClient();
     }
