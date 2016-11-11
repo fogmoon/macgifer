@@ -1,5 +1,7 @@
 # MacGifer
 
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
 In a divided world, streaming formats are a matter of inclusion. GIF was introduced by CompuServe in 1987, they didn't know how powerful it was going to be. 26 years later, using NodeJS together with Redis, WebRTC, websockets, webworkers and HTML5, MacGifer introduces GIF-based streaming, making it possible for Internet Explorer 6.0 to be part of society once again.
 
 ## Requirements
