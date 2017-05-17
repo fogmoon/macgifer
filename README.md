@@ -64,4 +64,15 @@ sudo apt-get install redis-server
 ## Credits and Thanks
 * The authors of GIFEncoder.js, LZWEncoder.js and NeuQuant.js
 * This project was created for the [Node.js Knockout](nodeknockout.com/)
-* Thanks to [Sophilabs](http://sophilabs.com) team for the place and food!
+
+## License
+MacGifer is Copyright (c) 2017 sophilabs, inc. It is free software, and may be
+redistributed under the terms specified in the [license](/LICENSE) file.
+
+## About
+
+[![sophilabs.co](https://s3.amazonaws.com/sophilabs-assets/logo/logo_300x66.gif)](https://sophilabs.co)
+
+MacGifer is maintained and funded by sophilabs, inc. The names and logos for
+sophilabs are trademarks of sophilabs, inc.
+
